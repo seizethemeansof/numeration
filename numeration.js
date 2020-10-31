@@ -111,6 +111,7 @@ function makeTenth() {
         tenths.push(tenth);
     } else {
         console.log("Tu n'as pas selecté une dizaine, réessaie !")
+        window.alert("Tu n'as pas selectionné dix unités, réessaie !");
         for (var i = 0; i < selected.length; i++) {
             units.push(selected[i]);
         }
@@ -137,7 +138,8 @@ function makeCentaine() {
         // Redessine le fond et ajoute les éléments restantes
         drawAllElements()
     } else {
-        console.log("Tu n'as pas selecté une dizaine, réessaie !")
+        console.log("Tu n'as pas selecté une dizaine, réessaie !");
+        window.alert("Tu n'as pas selectionné dix dizaines, réessaie !");
         for (var i = 0; i < selected.length; i++) {
             tenths.push(selected[i]);
         }
@@ -186,11 +188,11 @@ function setup() {
         units.push(unit);
     }
 
-    button = createButton('Créer une dizaine');
+    button = createButton('Faire une dizaine');
     button.position(width / 2, 50);
     button.mousePressed(makeTenth);
 
-    button_100 = createButton('Créer une centaine');
+    button_100 = createButton('Faire une centaine');
     button_100.position(width / 4, 50);
     button_100.mousePressed(makeCentaine);
 
