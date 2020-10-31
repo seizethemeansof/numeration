@@ -2,6 +2,7 @@ var unitSize = 16;
 var units = [];
 var tenths = [];
 var centaines = [];
+var numberUnit = 0;
 
 function Unit() {
 
@@ -171,22 +172,34 @@ function drawAllElements() {
 function answerCheck() {
     if (int(inputElem.value()) == numberUnit) {
         print("Bravo ! Tu as donné la bonne réponse.");
+        window.alert("Bravo ! Tu as donné la bonne réponse.");
+        loadExercice();
+
     } else {
         print("Es-tu sûr ? Recompte et reessaie.");
+        window.alert("Es-tu sûr ? Recompte et reessaie.");
     }
+}
+
+function loadExercice() {
+    numberUnit = int(random(1, 200));
+    units = units = [];
+    tenths = [];
+    centaines = [];
+
+    for (var i = 0; i < numberUnit; i++) {
+        unit = new Unit();
+        units.push(unit);
+    }
+
+    inputElem.value('');
+
+    drawAllElements();
 }
 
 function setup() {
     createCanvas(1200, 600);
     background(220);
-
-    numberUnit = int(random(1, 200));
-
-    for (var i = 0; i < numberUnit; i++) {
-        unit = new Unit();
-        unit.display();
-        units.push(unit);
-    }
 
     button = createButton('Faire une dizaine');
     button.position(width / 2, 50);
@@ -202,6 +215,8 @@ function setup() {
     inputElem.position((width - (inputElem.width + 20 + button_ok.width))/2, height - 40); 
     button_ok.position((width - (inputElem.width + 20 + button_ok.width))/2 + 20 + inputElem.width, height - 40);
     button_ok.mousePressed(answerCheck);
+
+    loadExercice();
 }
 
 function mousePressed() {
