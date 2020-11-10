@@ -8,12 +8,18 @@ function Unit() {
 
     this.x = random(unitSize +  width / 2, width - unitSize);
     this.y = random(unitSize + 100, height - unitSize - 100);
-    this.col = color(0, 0, 0);
     this.is_active = false;
+    this.col = color(0, 0, 0)
 
     this.display = function () {
-        fill(this.col);
-        ellipse(this.x, this.y, unitSize, unitSize);
+        //fill(this.col);
+        // ellipse(this.x, this.y, unitSize, unitSize);
+        if (this.is_active) {
+            image(jeton_unite_clicked, this.x - unitSize / 2, this.y - unitSize / 2);
+        } else {
+            image(jeton_unite_normal, this.x - unitSize / 2, this.y - unitSize / 2);
+        }
+        
     }
 
     this.clicked = function () {
@@ -41,8 +47,9 @@ function Tenth() {
     this.is_active = false;
 
     this.display = function () {
-        fill(this.col);
-        ellipse(this.x, this.y, unitSize, unitSize);
+        // fill(this.col);
+        // ellipse(this.x, this.y, unitSize, unitSize);
+        image(jeton_dizaine_normal, this.x - jeton_dizaine_normal.width / 2, this.y - jeton_dizaine_normal.width / 2);
     }
 
     this.clicked = function () {
@@ -183,7 +190,7 @@ function answerCheck() {
 
 function loadExercice() {
     numberUnit = int(random(1, 200));
-    units = units = [];
+    units = [];
     tenths = [];
     centaines = [];
 
@@ -197,9 +204,14 @@ function loadExercice() {
     drawAllElements();
 }
 
+function preload() {
+    jeton_unite_normal = loadImage('assets/jeton_unite_normal.png');
+    jeton_unite_clicked = loadImage('assets/jeton_unite_clicked.png')
+    jeton_dizaine_normal = loadImage('assets/jeton_dizaine_normal.png')
+}
+
 function setup() {
     createCanvas(1200, 600);
-    background(220);
 
     button = createButton('Faire une dizaine');
     button.position(width / 2, 50);
