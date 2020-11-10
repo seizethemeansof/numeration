@@ -5,9 +5,12 @@ var centaines = [];
 var numberUnit = 0;
 
 function Unit() {
-
-    this.x = random(unitSize +  width / 2, width - unitSize);
-    this.y = random(unitSize + 100, height - unitSize - 100);
+    // Select random coordinates
+    coord = units_grid.splice(Math.floor(Math.random()*units_grid.length), 1)[0];
+    this.x = coord[0];
+    this.y = coord[1];
+    //this.x = random(unitSize +  width / 2, width - unitSize);
+    //this.y = random(unitSize + 100, height - unitSize - 100);
     this.is_active = false;
     this.col = color(0, 0, 0)
 
@@ -40,8 +43,11 @@ function Unit() {
 }
 
 function Tenth() {
-    this.x = random(unitSize + width / 4, width - width / 2 - unitSize);
-    this.y = random(unitSize + 100, height - unitSize - 100);
+    //this.x = random(unitSize + width / 4, width - width / 2 - unitSize);
+    //this.y = random(unitSize + 100, height - unitSize - 100);
+    coord = dizaines_grid.splice(Math.floor(Math.random()*dizaines_grid.length), 1)[0];
+    this.x = coord[0];
+    this.y = coord[1];
     this.col = color(24, 119, 72);
 
     this.is_active = false;
@@ -73,8 +79,8 @@ function Tenth() {
 }
 
 function Centaine() {
-    this.x = random(unitSize, width / 4 - unitSize);
-    this.y = random(unitSize + 100, height - unitSize - 100);
+    this.x = random(jeton_centaine.width / 2 + 32, width / 4 - jeton_centaine.width / 2 - 32);
+    this.y = random(jeton_centaine.height / 2 + 100, height - jeton_centaine.height / 2 - 100);
     this.col = color(30, 144, 255);
 
     this.is_active = false;
@@ -181,6 +187,20 @@ function loadExercice() {
     units = [];
     tenths = [];
     centaines = [];
+
+    units_grid = [];
+    for (var i = 0; i < 23; i++) {
+        for (var j = 0; j < 17; j++) {
+            units_grid.push([width / 2 + i*24 + int(random(1, 8)), 100 + j*24 + int(random(1, 8))]);
+        }
+    }
+
+    dizaines_grid = [];
+    for (var i = 0; i < 6; i++) {
+        for (var j = 0; j < 6; j++) {
+            dizaines_grid.push([width / 4 + i*32 + int(random(1, 8)), 100 + j*64 + int(random(1, 8))]);
+        }
+    }
 
     for (var i = 0; i < numberUnit; i++) {
         unit = new Unit();
