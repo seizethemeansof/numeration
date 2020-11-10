@@ -28,11 +28,11 @@ function Unit() {
             if (this.is_active) {
                 this.is_active = false;
                 this.col = color(0, 0, 0);
-                this.display();
+                drawAllElements();
             } else {
                 this.is_active = true;
                 this.col = color(255, 0, 0);
-                this.display();
+                drawAllElements();
             }
 
         }
@@ -49,7 +49,12 @@ function Tenth() {
     this.display = function () {
         // fill(this.col);
         // ellipse(this.x, this.y, unitSize, unitSize);
-        image(jeton_dizaine_normal, this.x - jeton_dizaine_normal.width / 2, this.y - jeton_dizaine_normal.width / 2);
+        if (this.is_active) {
+            image(jeton_dizaine_clicked, this.x - jeton_dizaine_clicked.width / 2, this.y - jeton_dizaine_clicked.height / 2);
+        } else {
+            image(jeton_dizaine_normal, this.x - jeton_dizaine_normal.width / 2, this.y - jeton_dizaine_normal.height / 2);
+        }
+        
     }
 
     this.clicked = function () {
@@ -58,11 +63,11 @@ function Tenth() {
             if (this.is_active) {
                 this.is_active = false;
                 this.col = color(24, 119, 72);
-                this.display();
+                drawAllElements();
             } else {
                 this.is_active = true;
                 this.col = color(255, 0, 0);
-                this.display();
+                drawAllElements();
             }
 
         }
@@ -206,8 +211,9 @@ function loadExercice() {
 
 function preload() {
     jeton_unite_normal = loadImage('assets/jeton_unite_normal.png');
-    jeton_unite_clicked = loadImage('assets/jeton_unite_clicked.png')
-    jeton_dizaine_normal = loadImage('assets/jeton_dizaine_normal.png')
+    jeton_unite_clicked = loadImage('assets/jeton_unite_clicked.png');
+    jeton_dizaine_normal = loadImage('assets/jeton_dizaine_normal.png');
+    jeton_dizaine_clicked = loadImage('assets/jeton_dizaine_clicked.png');
 }
 
 function setup() {
